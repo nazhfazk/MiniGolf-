@@ -4,6 +4,7 @@ using UnityEngine;
 using Cinemachine;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
+using UnityEngine.Audio;
 
 public class BallController : MonoBehaviour, IPointerDownHandler
 {
@@ -15,6 +16,8 @@ public class BallController : MonoBehaviour, IPointerDownHandler
     [SerializeField] LineRenderer aimLine;
 
     [SerializeField] Transform aimWorld;
+
+    [SerializeField] private AudioSource HitSound;
 
     Vector3 forceDirection;
 
@@ -95,11 +98,11 @@ public class BallController : MonoBehaviour, IPointerDownHandler
     {
         if(shoot)
         {
+            HitSound.Play();
             shoot = false;
-            AddForce(forceDirection * force * forceFactor, ForceMode.Impulse);
+            AddForce(forceDirection * force * forceFactor, ForceMode.Impulse); 
             shootCount += 1;
             onBallShooted.Invoke(shootCount);
-            
         }
 
         if (rb.velocity.sqrMagnitude < 0.01f && rb.velocity.sqrMagnitude != 0)
@@ -109,6 +112,7 @@ public class BallController : MonoBehaviour, IPointerDownHandler
         }
     }
 
+   
     
     public bool IsMove()
     {
@@ -128,4 +132,5 @@ public class BallController : MonoBehaviour, IPointerDownHandler
 
         shootingMode = true;
     }
+
 }

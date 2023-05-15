@@ -56,7 +56,7 @@ public class PlayManager : MonoBehaviour
 
         //win window popup
         finishWindow.gameObject.SetActive(true);
-        finishText.text = "FInished !!!\n " + "Shoot Count: " + ballController.ShootCount;
+        finishText.text = "Level Completed !!!\n " + "Shoot Count: " + ballController.ShootCount;
 
     }
 
